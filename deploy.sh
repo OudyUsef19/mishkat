@@ -11,6 +11,7 @@ DB_USER="mishkat_user"
 DB_PASS="mishkat_pass_2026"
 JWT_SECRET="mishkat_jwt_super_secret_$(openssl rand -hex 16)"
 REPO="https://github.com/OudyUsef19/mishkat.git"
+BRANCH="claude/quran-recitation-system-YTX3b"
 APP_DIR="/opt/mishkat"
 
 echo "=================================================="
@@ -57,7 +58,7 @@ su -c "psql -d $DB_NAME -c \"GRANT ALL ON SCHEMA public TO $DB_USER\"" postgres
 # ── 6. Clone & build app ──────────────────────────────────
 echo "📂 [6/9] تنزيل التطبيق..."
 rm -rf "$APP_DIR"
-git clone "$REPO" "$APP_DIR" --quiet
+git clone --branch "$BRANCH" --single-branch "$REPO" "$APP_DIR" --quiet
 
 # Backend deps
 cd "$APP_DIR/backend"
